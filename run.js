@@ -27,7 +27,7 @@ function parsePorts(ports) {
  * @returns {string} Current IP
  */
 async function getIP() {
-  const response = await axios.get('https://api.ipify.org')
+  const response = await axios.get('https://ifconfig.co/ip')
   return response.data
 }
 

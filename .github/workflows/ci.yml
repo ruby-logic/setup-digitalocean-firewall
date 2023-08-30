@@ -2,14 +2,14 @@ name: Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - main.js
       - post.js
       - run.js
       - yarn.lock
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - main.js
       - post.js

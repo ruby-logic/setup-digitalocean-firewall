@@ -1,7 +1,9 @@
 # setup-digitalocean-firewall
 
-![GitHub](https://img.shields.io/github/license/earthpyy/setup-digitalocean-firewall)
-![GitHub Build Status](https://img.shields.io/github/workflow/status/earthpyy/setup-digitalocean-firewall/build)
+__This action is a fork of [earthpyy/setup-digitalocean-firewall](https://github.com/earthpyy/setup-digitalocean-firewall)__
+
+![GitHub](https://img.shields.io/github/license/ruby-logic/setup-digitalocean-firewall)
+![GitHub Build Status](https://img.shields.io/github/actions/workflow/status/ruby-logic/setup-digitalocean-firewall/build.yml)
 ![Node Version](https://img.shields.io/badge/node-16-blue)
 
 GitHub Action to temporary add GitHub shared runner IP into DigitalOcean's firewall rule
@@ -11,8 +13,8 @@ GitHub Action to temporary add GitHub shared runner IP into DigitalOcean's firew
 ### Basic Usage
 
 ```yml
-- name: Setup DigitalOcean firewall
-  uses: earthpyy/setup-digitalocean-firewall@v1
+- name: Setup DigitalOcean Firewall (uses ifconfig.co)
+  uses: ruby-logic/setup-digitalocean-firewall@v1.0.0
   with:
     access-token: ${{ secrets.DO_ACCESS_TOKEN }}
     firewall-id: eb64eefd-f935-4d75-b0a4-97e3d1dbec87

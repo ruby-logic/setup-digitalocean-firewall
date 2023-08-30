@@ -1,8 +1,8 @@
 {
   "name": "setup-digitalocean-firewall",
   "version": "0.0.0",
-  "repository": "git@github.com:earthpyy/setup-digitalocean-firewall.git",
-  "author": "Preeti Yuankrathok <preetisatit@gmail.com>",
+  "repository": "git@github.com:ruby-logic/setup-digitalocean-firewall.git",
+  "author": "mpptx <no-reply@rubylogic.eu>",
   "license": "GPL-3.0",
   "dependencies": {
     "@actions/core": "^1.9.1",
