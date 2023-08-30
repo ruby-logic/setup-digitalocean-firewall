@@ -14,7 +14,7 @@ GitHub Action to temporary add GitHub shared runner IP into DigitalOcean's firew
 
 ```yml
 - name: Setup DigitalOcean Firewall (uses ifconfig.co)
-  uses: ruby-logic/setup-digitalocean-firewall@v1.0.0
+  uses: ruby-logic/setup-digitalocean-firewall@v1
   with:
     access-token: ${{ secrets.DO_ACCESS_TOKEN }}
     firewall-id: eb64eefd-f935-4d75-b0a4-97e3d1dbec87
