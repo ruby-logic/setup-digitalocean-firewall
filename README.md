@@ -4,7 +4,7 @@ __This action is a fork of [earthpyy/setup-digitalocean-firewall](https://github
 
 ![GitHub](https://img.shields.io/github/license/ruby-logic/setup-digitalocean-firewall)
 ![GitHub Build Status](https://img.shields.io/github/actions/workflow/status/ruby-logic/setup-digitalocean-firewall/build.yml)
-![Node Version](https://img.shields.io/badge/node-16-blue)
+![Node Version](https://img.shields.io/badge/node-20-blue)
 
 GitHub Action to temporary add GitHub shared runner IP into DigitalOcean's firewall rule
 
