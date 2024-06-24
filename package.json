@@ -1,6 +1,6 @@
 {
   "name": "setup-digitalocean-firewall",
-  "version": "1.0.1",
+  "version": "2",
   "repository": "git@github.com:ruby-logic/setup-digitalocean-firewall.git",
   "author": "mpptx <no-reply@rubylogic.eu>",
   "license": "GPL-3.0",
