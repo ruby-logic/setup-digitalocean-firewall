@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Move to version branch
         run: |
-          git checkout -b $plain
+          git checkout -b ${{ steps.get-version.outputs.plain }}
       - name: Set Git config
         run: |
           git config --global user.name 'GitHub Workflow'
@@ -42,14 +42,14 @@ jobs:
         run: |
           yarn config set version-git-message "[RELEASE] %s"
           git stage .
-          yarn version --new-version $plain
-          git push --set-upstream origin $plain
+          yarn version --new-version ${{ steps.get-version.outputs.plain }}
+          git push --set-upstream origin ${{ steps.get-version.outputs.plain }}
       - name: Push new tag
         run: |
           git push origin ${{ github.ref_name }}
       - name: Create or move parent tag
         run: |
-          git tag -d $major || true
-          git push --delete origin $major || true
-          git tag $major
-          git push origin $major
+          git tag -d ${{ steps.get-version.outputs.major }} || true
+          git push --delete origin ${{ steps.get-version.outputs.major }} || true
+          git tag ${{ steps.get-version.outputs.major }}
+          git push origin ${{ steps.get-version.outputs.major }}
