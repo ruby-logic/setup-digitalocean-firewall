@@ -21,18 +21,23 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, '[RELEASE] ')"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checking in, checking out...
+        uses: actions/checkout@v4
+
+      - name: Node setup
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'yarn'
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
       - name: Build using ncc
         run: |
           yarn ncc build main.js -o dist/main
           yarn ncc build post.js -o dist/post
+
       - name: Run action
         uses: ./
         with:

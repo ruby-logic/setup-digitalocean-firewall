@@ -12,41 +12,51 @@ jobs:
       - id: get-version
         run: |
           plain=$(echo ${{ github.ref_name }} | cut -c 2-)
-          echo "plain=$plain" >> $GITHUB_STATE
+          echo "plain=$plain" >> $GITHUB_OUTPUT
           major=$(echo ${{ github.ref_name }} | cut -c -2)
-          echo "major=$major" >> $GITHUB_STATE
-      - name: Checkout repo
-        uses: actions/checkout@v2
+          echo "major=$major" >> $GITHUB_OUTPUT
+
+      - name: Checking it, checking out...
+        uses: actions/checkout@v4
+
       - name: Move to version branch
         run: |
           git checkout -b ${{ steps.get-version.outputs.plain }}
+
       - name: Set Git config
         run: |
           git config --global user.name 'GitHub Workflow'
           git config --global user.email '<>'
-      - uses: actions/setup-node@v2
+
+      - uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'yarn'
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
       - name: Build using ncc
         run: |
           yarn ncc build main.js -o dist/main
           yarn ncc build post.js -o dist/post
+
       - name: Remove current tag
         run: |
           git tag -d ${{ github.ref_name }}
           git push --delete origin ${{ github.ref_name }}
+
       - name: Increase version
         run: |
           yarn config set version-git-message "[RELEASE] %s"
           git stage .
           yarn version --new-version ${{ steps.get-version.outputs.plain }}
           git push --set-upstream origin ${{ steps.get-version.outputs.plain }}
+
       - name: Push new tag
         run: |
           git push origin ${{ github.ref_name }}
+
       - name: Create or move parent tag
         run: |
           git tag -d ${{ steps.get-version.outputs.major }} || true
