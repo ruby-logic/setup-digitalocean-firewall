@@ -1,4 +1,3 @@
-const axios = require('axios').default
 const core = require('@actions/core')
 
 ALLOWED_PROTOCOLS = ['tcp', 'udp']
@@ -27,8 +26,13 @@ function parsePorts(ports) {
  * @returns {string} Current IP
  */
 async function getIP() {
-  const response = await axios.get('https://ifconfig.me/ip')
-  return response.data
+  const response = await fetch('https://ifconfig.me/ip')
+
+  if (!response.ok) {
+    throw new Error(`Failed to get current IP: ${response.status} ${response.statusText}`)
+  }
+
+  return response.text()
 }
 
 /**
@@ -48,15 +52,18 @@ async function updateFirewallRules(method, rules) {
   core.info(rulesString)
 
   if (!dryRun) {
-    await axios({
-      method: httpMethod,
-      url: `https://api.digitalocean.com/v2/firewalls/${firewallId}/rules`,
+    const response = await fetch(`https://api.digitalocean.com/v2/firewalls/${firewallId}/rules`, {
+      method: httpMethod.toUpperCase(),
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
-      data,
-      responseType: 'json',
+      body: JSON.stringify(data),
     })
+
+    if (!response.ok) {
+      throw new Error(`Failed to update firewall rules: ${response.status} ${response.statusText}`)
+    }
 
     core.info('Sent')
   } else {

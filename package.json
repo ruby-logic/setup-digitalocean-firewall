@@ -1,13 +1,11 @@
 {
   "name": "setup-digitalocean-firewall",
-  "version": "2",
+  "version": "3",
   "repository": "git@github.com:ruby-logic/setup-digitalocean-firewall.git",
   "author": "mpptx <no-reply@rubylogic.eu>",
   "license": "GPL-3.0",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/github": "^5.0.0",
-    "axios": "^0.24.0"
+    "@actions/core": "^1.10.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.1",
